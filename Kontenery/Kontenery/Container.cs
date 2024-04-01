@@ -40,11 +40,22 @@ namespace APBD2
             return $"KON-{this.type}" + "-" + this.idNumber;
         }
 
-        public void RemoveCargo() { }
+   
+
+        public void RemoveCargo(int cargoMass) {
+            this.cargoMass -= cargoMass;
+        }
         public void AddCargo(int cargoMass) {
             if (cargoMass > this.maxCapacity) {
                 throw new OverfillException("Przekroczono pojemność kontenera");
             }
+            this.cargoMass += cargoMass;
+        }
+
+
+        public void ShowInfo() {
+            Console.WriteLine("Masa ładunku: " + this.cargoMass + " Wysokość: " + this.hight + " Masa własna: " + this.curbWeight + " Głębokośc: " + this.depth + " Typ: "
+                + this.type + " Max ładowność: " + this.maxCapacity);
         }
     }
 

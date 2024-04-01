@@ -8,8 +8,8 @@ namespace APBD2
 {
     internal interface IContainer
     {
-        public void RemoveCargo(int cargoMass) { }
-        public void AddCargo(int cargoMass) { }
+        public void RemoveCargo(int cargoMass);
+        public void AddCargo(int cargoMass);
        
     }
 }

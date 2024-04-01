@@ -12,14 +12,14 @@ namespace APBD2
 
         bool doesStoreDangerousCargo {  get; set; }
 
-        public ContainerL(int cargoMass, int hight, int curbWeight, int depth, APBD2.Type type, int maxCapacity) : base(cargoMass, hight, curbWeight, depth, type, maxCapacity)
+        public ContainerL(int cargoMass, int hight, int curbWeight, int depth, APBD2.Type type, int maxCapacity, Boolean doesStoreDangerousCargo) : base(cargoMass, hight, curbWeight, depth, type, maxCapacity)
         {
         }
         public void NotifyHazard() {
             Console.WriteLine($"Uwaga. Niebezpieczeństwo przy kontenerze: {showContainerId()}");
             
         }
-        public void AddCargo() {
+        public void AddCargo(int cargoMass) {
             if (this.doesStoreDangerousCargo)
             {
                 this.maxCapacity = this.maxCapacity / 2;
@@ -27,10 +27,25 @@ namespace APBD2
             else
                 this.maxCapacity = this.maxCapacity * 0.9;
 
-            if (this.cargoMass > this.maxCapacity) {
+            if (this.cargoMass > this.maxCapacity || this.maxCapacity < cargoMass ) {
                 Console.WriteLine("Próba wykonania niebezpiecznej operacji");
             }
 
+            if (this.maxCapacity >= cargoMass) {
+                maxCapacity -= cargoMass;
+
+            }
+
+        }
+
+        public void RemoveCargo(int mass)
+        {
+            this.cargoMass -= cargoMass;
+        }
+
+        public void ShowInfo() { 
+            base.ShowInfo();
+            Console.WriteLine("Czy jest niebezpieczny ładunek " + this.doesStoreDangerousCargo);
         }
     }
 
