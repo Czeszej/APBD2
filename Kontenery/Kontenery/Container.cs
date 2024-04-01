@@ -11,7 +11,7 @@ namespace APBD2
 {
     internal class Container : IContainer
     {
-        public int cargoMass { get; set; }
+        public double cargoMass { get; set; }
         public int hight { get; set; }
         public int curbWeight { get; set; }
         public int depth { get; set; }
