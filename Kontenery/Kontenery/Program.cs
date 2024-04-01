@@ -1,12 +1,22 @@
 ﻿using APBD2;
 
-public class ConsoleApp1
+namespace APBD2
 {
-    public static void Main(string[] args)
+    public class Kontenery
     {
-        Console.WriteLine("Hello world");
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello world");
 
-        Container container1 = new Container(1000, 200, 1500, 50, APBD2.Type.G, 500, 1);
+            Container container1 = new Container(1000, 200, 1500, 50, APBD2.Type.G, 500);
 
-        Console.WriteLine(container1.ToString);
+            Container container2 = new Container(1000, 200, 1500, 50, APBD2.Type.L, 500);
+            ContainerL container3 = new ContainerL(1000, 200, 1500, 50, APBD2.Type.L, 500);
+
+
+            Console.WriteLine(container2.showContainerId());
+            Console.WriteLine(container3.showContainerId());
+            container3.NotifyHazard();
+        }
     }
+}

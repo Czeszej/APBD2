@@ -1,36 +1,50 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace APBD2
 {
-    internal class Container
+    internal class Container : IContainer
     {
-        public int mass { get; set; }
-        public int high { get; set; }
+        public int cargoMass { get; set; }
+        public int hight { get; set; }
         public int curbWeight { get; set; }
         public int depth { get; set; }
 
         Type type { get; set; }
-        public int maxCapacity { get; set; }
-        public int number { get; set; }
-        public Container(int mass, int high, int curbWeight, int depth, Type type, int maxCapacity, int number)
+        public double maxCapacity { get; set; }
+        public static int number { get; set; }
+
+        public int idNumber { get; set; }
+        
+        public Container(int cargoMass, int hight, int curbWeight, int depth, Type type, int maxCapacity)
         {
-            this.mass = mass;
-            this.high = high;
+            this.cargoMass = cargoMass;
+            this.hight = hight;
             this.curbWeight = curbWeight;
             this.depth = depth;
             this.type = type;
             this.maxCapacity = maxCapacity;
-            this.number = number;
+            number++;
+            this.idNumber = number;
+           
         }
 
-        override public string ToString()
+         public string showContainerId()
         {
-            return $"KON-{this.type}" + "-" + this.number;
+            return $"KON-{this.type}" + "-" + this.idNumber;
+        }
+
+        public void RemoveCargo() { }
+        public void AddCargo(int cargoMass) {
+            if (cargoMass > this.maxCapacity) {
+                throw new OverfillException("Przekroczono pojemność kontenera");
+            }
         }
     }
 
